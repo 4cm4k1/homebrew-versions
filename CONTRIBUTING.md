@@ -1,6 +1,6 @@
 # How to Contribute
 
-All of the [instructions for contributing from the main repository](https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md) apply, and won't be repeated here. You simply need to change references to `homebrew/homebrew-cask` (that repository) to `homebrew/homebrew-cask-versions` (this repository).
+[Instructions from the main repository](https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md) apply. Exceptions are documented on the [README](README.md) and this document.
 
 ## Naming Versions Casks
 
@@ -16,8 +16,6 @@ Cask Token          | `<token>-<numbered version>` | Filename
 `dash`              | `dash3`                      | `dash3.rb`
 `lingon-x`          | `lingon-x5`                  | `lingon-x5.rb`
 `transmit`          | `transmit4`                  | `transmit4.rb`
-
-
 
 Cask Token          | `<token>-<pre-release type>` | Filename
 --------------------|------------------------------|------------------------
@@ -36,8 +34,8 @@ Example ([exist-db-nightly.rb](https://github.com/Homebrew/homebrew-cask-version
 
 ```ruby
   url do
-    require 'open-uri'
-    base_url = 'http://static.adamretter.org.uk/exist-nightly'
+    require "open-uri"
+    base_url = "http://static.adamretter.org.uk/exist-nightly"
     builds_url = "#{base_url}/table.html"
     latest_build_filename = URI(builds_url).open do |io|
       io.read.scan(%r{<tr>.*?<td>(.*?)</td>.*?<a href="([^\"]+)">dmg}m).max[1]

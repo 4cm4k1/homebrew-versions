@@ -1,14 +1,30 @@
 cask "github-beta" do
-  version "2.5.4-beta1-8fde780d"
-  sha256 "11d757485eaec28dc27938f048c77d66c44916e0736c4073cbb673b123d02be2"
+  version "2.8.4-beta5-7f57ce43"
 
-  # desktop.githubusercontent.com/ was verified as official when first introduced to the cask
-  url "https://desktop.githubusercontent.com/releases/#{version}/GitHubDesktop.zip"
-  appcast "https://github.com/desktop/desktop/releases.atom"
+  if Hardware::CPU.intel?
+    sha256 "d38b528bdd7b7c2a815414a6daeaa6377c161930a71105befa1b4b7514da625d"
+
+    url "https://desktop.githubusercontent.com/releases/#{version}/GitHubDesktop-x64.zip",
+        verified: "desktop.githubusercontent.com/"
+  else
+    sha256 "d1ba6245684cf4d4dd10d72a653bf6dc3e75f6568fafa1e75886869034385f40"
+
+    url "https://desktop.githubusercontent.com/releases/#{version}/GitHubDesktop-arm64.zip",
+        verified: "desktop.githubusercontent.com/"
+  end
+
   name "GitHub Desktop"
+  desc "Desktop client for GitHub repositories"
   homepage "https://desktop.github.com/"
 
+  livecheck do
+    url "https://central.github.com/deployments/desktop/desktop/latest/darwin?env=beta"
+    strategy :header_match
+    regex(%r{(\d+(?:\.\d+)[^/]*)/GitHubDesktop-x64\.zip}i)
+  end
+
   auto_updates true
+  conflicts_with cask: "github"
 
   app "GitHub Desktop.app"
   binary "#{appdir}/GitHub Desktop.app/Contents/Resources/app/static/github.sh", target: "github"

@@ -1,12 +1,18 @@
 cask "dropbox-beta" do
-  version "106.3.355"
-  sha256 "5a8a48f92d461fef832092f0d4afa51ec1fcd5319c12aa6c2607e66d02a29489"
+  version "127.3.4244"
+  sha256 "875bb9d2e84615184a6f4d21f8493084dc892e0b34de809a81bdbde43af42ef0"
 
-  # dropbox.com/ was verified as official when first introduced to the cask
-  url "https://www.dropbox.com/download?build=#{version}&plat=mac&type=full"
+  url "https://www.dropbox.com/download?build=#{version}&plat=mac&type=full",
+      verified: "dropbox.com/"
   name "Dropbox"
   desc "Client for the Dropbox cloud storage service"
   homepage "https://www.dropboxforum.com/t5/Desktop-client-builds/bd-p/101003016"
+
+  livecheck do
+    url :homepage
+    strategy :page_match
+    regex(/Beta\sBuild\s(\d+(?:\.\d+)*)/i)
+  end
 
   auto_updates true
   conflicts_with cask: "dropbox"

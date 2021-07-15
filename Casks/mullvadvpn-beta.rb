@@ -1,12 +1,18 @@
 cask "mullvadvpn-beta" do
-  version "2020.5-beta2"
-  sha256 "7a9c2d59f6f6800a2ea0f65b1b817e5da791b3ddeaabd3be2ab931457b33313f"
+  version "2021.4-beta1"
+  sha256 "1c410790d36f44506f2f17300e6b835f5e9b0a3213448f8f532e32288761cf7b"
 
-  # github.com/mullvad/mullvadvpn-app/ was verified as official when first introduced to the cask
-  url "https://github.com/mullvad/mullvadvpn-app/releases/download/#{version}/MullvadVPN-#{version}.pkg"
-  appcast "https://github.com/mullvad/mullvadvpn-app/releases.atom"
-  name "Mullvad"
+  url "https://github.com/mullvad/mullvadvpn-app/releases/download/#{version}/MullvadVPN-#{version}.pkg",
+      verified: "github.com/mullvad/mullvadvpn-app/"
+  name "Mullvad VPN"
+  desc "VPN client"
   homepage "https://mullvad.net/"
+
+  livecheck do
+    url "https://github.com/mullvad/mullvadvpn-app/releases"
+    strategy :page_match
+    regex(/MullvadVPN-(\d+(?:\.\d+)*.+-beta\d+).pkg/i)
+  end
 
   conflicts_with cask: "mullvadvpn"
 

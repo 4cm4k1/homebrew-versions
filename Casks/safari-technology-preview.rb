@@ -1,19 +1,31 @@
 cask "safari-technology-preview" do
-  if MacOS.version <= :catalina
-    version "113,001-46217-20200908-26bf578a-dcb0-4f70-b930-d9131bbf5d8a"
-    sha256 "09f86d0808e067a46584e9394767040012d7bbae453bb9842cabbf593d9185d9"
+  if MacOS.version <= :big_sur
+    version "127,071-59915-20210701-7aeff054-50c5-4c98-b5b7-4fc517d8a696"
+    sha256 "996c5937493b90ee993c41e28b158224a18b60c573d5ec741b2ad50853984481"
   else
-    version "113,001-43557-20200908-b620aaf9-e006-4855-8bdf-e7e76b5950bc"
-    sha256 "3dcf197b8c2c181861d0c3f3d00fbb65940d1c1aaf11511c76c94fb153d0a7f0"
+    version "127,071-59909-20210701-e031945b-3e30-49fd-be61-b9aaa8e69e94"
+    sha256 "d187e486ca8b6dc95b4a8bd0520b4b972639235b9bb05cb7765e2481742f257e"
   end
 
   url "https://secure-appldnld.apple.com/STP/#{version.after_comma}/SafariTechnologyPreview.dmg"
-  appcast "https://developer.apple.com/safari/download/"
   name "Safari Technology Preview"
+  desc "Web browser"
   homepage "https://developer.apple.com/safari/download/"
 
+  livecheck do
+    url :homepage
+    strategy :page_match do |page|
+      release = page[%r{>\s*Release\s*</p>\s*<p[^>]*>\s*(\d+)\s*<}i, 1]
+      id = page[%r{
+        href=.*?/(\h+(?:-\h+)*)/SafariTechnologyPreview\.dmg
+        .*?macOS(?:\s|&nbsp;)*#{Regexp.escape(MacOS.version.to_s)}[\s.<]
+      }ix, 1]
+      "#{release},#{id}"
+    end
+  end
+
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   pkg "Safari Technology Preview.pkg"
 

@@ -1,10 +1,14 @@
 cask "appcode-eap" do
-  version "2020.2,202.6397.53"
-  sha256 "5c210c01c77ede89d1ae19f82bdcd809f4dae07c930ae60f2f53ce1d197580fc"
+  version "2021.2,212.4638.14"
+  sha256 "647542279736f282e6d4793ce7cfca1100f27d81b95e816ba0e097004e9d54f5"
 
   url "https://download.jetbrains.com/objc/AppCode-#{version.after_comma}.dmg"
   name "AppCode EAP"
   homepage "https://www.jetbrains.com/objc/nextversion/"
+
+  livecheck do
+    skip "No version information available"
+  end
 
   conflicts_with cask: "appcode"
 

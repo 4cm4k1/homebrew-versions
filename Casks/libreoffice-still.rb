@@ -1,13 +1,22 @@
 cask "libreoffice-still" do
-  version "6.4.6"
-  sha256 "200cf0da175e4b8c3f8f700fbbc774c9a4d3464d351a495c2922b4038962280c"
+  version "7.0.6"
+  sha256 "cd99c75b4becb853dbd37a501300b07f1f39b33dc0c1e418c346744829fc7738"
 
-  # download.documentfoundation.org/ was verified as official when first introduced to the cask
-  url "https://download.documentfoundation.org/libreoffice/stable/#{version}/mac/x86_64/LibreOffice_#{version}_MacOS_x86-64.dmg"
-  appcast "https://download.documentfoundation.org/libreoffice/stable/"
+  url "https://download.documentfoundation.org/libreoffice/stable/#{version}/mac/x86_64/LibreOffice_#{version}_MacOS_x86-64.dmg",
+      verified: "download.documentfoundation.org/"
   name "LibreOffice Still"
   desc "Free cross-platform office suite"
   homepage "https://www.libreoffice.org/"
+
+  livecheck do
+    url "https://www.libreoffice.org/download/release-notes/"
+    strategy :page_match do |page|
+      match = page.match(
+        /LibreOffice\s*(\d+(?:\.\d+)*)\s*\((\d+(?:-\d+)*)\)\s*-\s*Still\s*Branch/i,
+      )
+      (match[1]).to_s
+    end
+  end
 
   conflicts_with cask: "libreoffice"
 

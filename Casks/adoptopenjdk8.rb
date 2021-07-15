@@ -1,12 +1,20 @@
 cask "adoptopenjdk8" do
-  version "8,265:b01"
-  sha256 "db8b19f943bf96774a805b646b2c0ddd532123391e2e3873fe3720558e6091fe"
+  version "8,292:b10"
+  sha256 "4e200bc752337abc9dbfddf125db6a600f2ec53566f6f119a83036c8242a7672"
 
-  # github.com/AdoptOpenJDK/openjdk8-binaries/ was verified as official when first introduced to the cask
-  url "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk#{version.before_comma}u#{version.after_comma.before_colon}-#{version.after_colon}/OpenJDK#{version.before_comma}U-jdk_x64_mac_hotspot_#{version.before_comma}u#{version.after_comma.before_colon}#{version.after_comma.after_colon}.pkg"
-  appcast "https://github.com/adoptopenjdk/openjdk#{version.before_comma}-binaries/releases.atom"
+  url "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk#{version.before_comma}u#{version.after_comma.before_colon}-#{version.after_colon}/OpenJDK#{version.before_comma}U-jdk_x64_mac_hotspot_#{version.before_comma}u#{version.after_comma.before_colon}#{version.after_comma.after_colon}.pkg",
+      verified: "github.com/AdoptOpenJDK/openjdk8-binaries/"
   name "AdoptOpenJDK 8"
+  desc "Prebuilt OpenJDK binaries"
   homepage "https://adoptopenjdk.net/"
+
+  livecheck do
+    url :url
+    strategy :github_latest do |page|
+      match = page.match(%r{href=.*/jdk(\d+)u(\d+)-(b\d+)["' >]}i)
+      "#{match[1]},#{match[2]}:#{match[3]}"
+    end
+  end
 
   pkg "OpenJDK#{version.before_comma}U-jdk_x64_mac_hotspot_#{version.before_comma}u#{version.after_comma.before_colon}#{version.after_comma.after_colon}.pkg"
 

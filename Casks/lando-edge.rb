@@ -1,10 +1,9 @@
 cask "lando-edge" do
-  version "3.0.11"
-  sha256 "af2f8399cc4bab599e04f21905ece6602d83fb2aa07bd85c237730bd5187e9f2"
+  version "3.1.4"
+  sha256 "3369cf238c956bd12f421c56f110181cc981edeacd1743e1600feb9e991bdf45"
 
-  # github.com/lando/lando/ was verified as official when first introduced to the cask
-  url "https://github.com/lando/lando/releases/download/v#{version}/lando-v#{version}.dmg"
-  appcast "https://github.com/lando/lando/releases.atom"
+  url "https://github.com/lando/lando/releases/download/v#{version}/lando-v#{version}.dmg",
+      verified: "github.com/lando/lando/"
   name "Lando Edge"
   homepage "https://docs.lando.dev/"
 

@@ -1,11 +1,16 @@
 cask "powershell-preview" do
-  version "7.1.0-preview.7"
-  sha256 "b6156efcce319e89743f47cce21730345dccf79c5dc57e5c6c7137c8d4db4ead"
+  version "7.2.0-preview.7"
+  sha256 "752ecbf9b878ff5e35b462e5c9e4b21ccb50378f95cf3b3f4682be83ec2bd879"
 
   url "https://github.com/PowerShell/PowerShell/releases/download/v#{version}/powershell-#{version}-osx-x64.pkg"
-  appcast "https://github.com/PowerShell/PowerShell/releases.atom"
   name "PowerShell"
+  desc "Command-line shell and scripting language"
   homepage "https://github.com/PowerShell/PowerShell"
+
+  livecheck do
+    url :url
+    regex(/^v?(\d+(?:\.\d+)+[_-](?:preview|rc)(?:\.\d+)?)$/i)
+  end
 
   depends_on formula: "openssl"
   depends_on macos: ">= :high_sierra"
@@ -22,7 +27,7 @@ cask "powershell-preview" do
       rmdir: [
         "~/.cache",
         "~/.config",
-        "~/.local/share",
         "~/.local",
+        "~/.local/share",
       ]
 end

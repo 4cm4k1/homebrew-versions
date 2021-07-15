@@ -1,83 +1,107 @@
 cask "firefox-esr" do
-  version "68.12.0"
+  version "78.12.0"
 
   language "cs" do
-    sha256 "0238563f440a4c5d4cba74031d0d5bd8a78fdb1c0dc387ab03c62354fdcd137a"
+    sha256 "7c36aa65e5d7a7ecae6fbc4e1ef58c573d934e7a797af588ab257ed6d6eab2d1"
     "cs"
   end
   language "de" do
-    sha256 "a16f22e1f56600742ad2f716921baf04472d73e6f2e19f566f36cdccf8dfdeec"
+    sha256 "96f774480dab8517d2f755d1a728b5701c63452d7e9e1ebcb73e0407ccf7dc69"
     "de"
   end
+  language "en-CA" do
+    sha256 "fc5170fd865d81be86c49050d881ecf1363d074cecefd0e305c41cfbc15e7645"
+    "en-CA"
+  end
   language "en-GB" do
-    sha256 "8f90014a64414b50d3fbe87efddf78bd842009ee12e88e57a5dae4a6ae773b05"
+    sha256 "383dc2cc195c45e1b5e24be6991161cfcf6e6bb3feb586adccc9fa2f8744cb72"
     "en-GB"
   end
   language "en", default: true do
-    sha256 "c743379678b370eaeff8c7230deaf1acd7c53305703d540d33b575ad00615a3a"
+    sha256 "7c460ac899203e49a97523a4ab985e71556a7d7e820ba4cbc1bb9b6144ec0e06"
     "en-US"
   end
   language "fr" do
-    sha256 "d780a6665d028ec9aff9f338c516e324cccf72a5d87144f79772c9fad0461831"
+    sha256 "25d9909132b61d023d62d35b234c0a127c6138496d3f2d74e60cde1c6022e389"
     "fr"
   end
   language "gl" do
-    sha256 "9feb39753cdef7d44162877917ae48c7e816d2adf1f2f73c465d1964e6b69c93"
+    sha256 "b944eb5d8d8feb5eccc9e50c31a26b8a70eb1df6e1c663b618c4d4612b78c181"
     "gl"
   end
   language "it" do
-    sha256 "083c199166d6d5005706e31bba3bf500defc34b0bfc474b9303d22d3db7b2563"
+    sha256 "0ba6d11d2f788e464359509b610bd9b15bba0c54256ed2c951f829da41f1f970"
     "it"
   end
   language "ja" do
-    sha256 "14550d5ec60ff79bc1e8c9e23878bf87c75d8c344383fd6c89491dbf53d93e5c"
+    sha256 "018a9dc1ba434fa1b56f57636a78aa727d019cbaef1e110be2803c622bcec68d"
     "ja-JP-mac"
   end
   language "nl" do
-    sha256 "9121f4963166ba6a0f4b4b23177c24f4b5b70a04c41ca145ff54ac06f59d2b7f"
+    sha256 "78db717ed04ed994efa3f90eb3e6c2a44f7a8f5800ee0be1a67ba7d0433c7ea2"
     "nl"
   end
   language "pl" do
-    sha256 "5ad9e4958661ab50bda4a43d460700b78b14d78833cb54f6435a543edf6d5ab5"
+    sha256 "860bef7434707d2c3f23fdd03b63c28be0c52d35d2479e66a2532f82e756b314"
     "pl"
   end
   language "pt" do
-    sha256 "240cbf3f72c96f45e3bc114dc79e80a8fa35f73e3c73a00ef1db5ee962b79fed"
+    sha256 "1410d8cd5014d03c195044d9a7fe5d83703f1910f75c1da232c5861b87e421ea"
     "pt-PT"
   end
   language "ru" do
-    sha256 "8c1a7fc13abf36a7195d307fccc41f3225ae83e4f481edb8a6583565c6da836a"
+    sha256 "0d2198477ba752f33c2cf728a5a35b84284c825fc9d483b945933f29d9754d31"
     "ru"
   end
   language "uk" do
-    sha256 "ca858ed10adc98a116d4ff1cea2c9b2827cf15431499495eb0a2a7eb039a9161"
+    sha256 "5cd789749e9db9a482fded42f38fc44e3a4a3dd0c9b343d622b4493311c675a2"
     "uk"
   end
   language "zh-TW" do
-    sha256 "2196ad779b0bf2f5d3ddbf93a4d9c9eb7531800dfb425587cbfc4bd6e2c329da"
+    sha256 "55f5c3bbaf8e813e77bcbaff5e8e9b72462c06d52bc02bd35bbf65f159a908b4"
     "zh-TW"
   end
   language "zh" do
-    sha256 "e65523eccb665f8b60a927cd6f546f883ff982acaaed13f40f9aedec5bdb92f8"
+    sha256 "c00c2ce3e92f69e664f35155ace040cc0aa6d0a9dea986d0656ee52af1812b25"
     "zh-CN"
   end
 
-  # download-installer.cdn.mozilla.net/pub/firefox/releases/ was verified as official when first introduced to the cask
-  url "https://download-installer.cdn.mozilla.net/pub/firefox/releases/#{version}esr/mac/#{language}/Firefox%20#{version}esr.dmg"
-  appcast "https://www.macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://download.mozilla.org/%3Fproduct=firefox-esr-latest-ssl%26os=osx"
+  url "https://download-installer.cdn.mozilla.net/pub/firefox/releases/#{version}esr/mac/#{language}/Firefox%20#{version}esr.dmg",
+      verified: "download-installer.cdn.mozilla.net/pub/firefox/releases/"
   name "Mozilla Firefox ESR"
   name "Mozilla Firefox Extended Support Release"
+  desc "Web browser"
   homepage "https://www.mozilla.org/firefox/organizations/"
+
+  livecheck do
+    url "https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx"
+    strategy :header_match
+  end
 
   conflicts_with cask: [
     "firefox",
     "firefox-beta",
   ]
+  depends_on macos: ">= :sierra"
 
   app "Firefox.app"
 
   zap trash: [
+    "/Library/Logs/DiagnosticReports/firefox_*",
     "~/Library/Application Support/Firefox",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.mozilla.firefox.sfl*",
+    "~/Library/Application Support/CrashReporter/firefox_*",
     "~/Library/Caches/Firefox",
-  ]
+    "~/Library/Caches/Mozilla/updates/Applications/Firefox",
+    "~/Library/Caches/org.mozilla.firefox",
+    "~/Library/Preferences/org.mozilla.firefox.plist",
+    "~/Library/Saved Application State/org.mozilla.firefox.savedState",
+    "~/Library/WebKit/org.mozilla.firefox",
+  ],
+      rmdir: [
+        "~/Library/Application Support/Mozilla", #  May also contain non-Firefox data
+        "~/Library/Caches/Mozilla/updates/Applications",
+        "~/Library/Caches/Mozilla/updates",
+        "~/Library/Caches/Mozilla",
+      ]
 end

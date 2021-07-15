@@ -1,20 +1,28 @@
 cask "google-chrome-canary" do
-  version :latest
+  version "93.0.4576.0"
   sha256 :no_check
 
-  url "https://dl.google.com/release2/q/canary/googlechrome.dmg"
+  if Hardware::CPU.intel?
+    url "https://dl.google.com/chrome/mac/canary/googlechromecanary.dmg"
+  else
+    url "https://dl.google.com/chrome/mac/universal/canary/googlechromecanary.dmg"
+  end
+
   name "Google Chrome Canary"
-  desc "Cross-platform web browser"
+  desc "Web browser"
   homepage "https://www.google.com/chrome/canary/"
+
+  livecheck do
+    url "https://chromiumdash.appspot.com/fetch_releases?channel=Canary&platform=Mac"
+    strategy :page_match
+    regex(/"version": "(\d+(?:\.\d+)*)"/i)
+  end
+
+  auto_updates true
 
   app "Google Chrome Canary.app"
 
-  uninstall launchctl: [
-    "com.google.keystone.agent",
-    "com.google.keystone.daemon",
-  ]
-
-  zap trash: [
+  zap trash:     [
     "/Library/Caches/com.google.SoftwareUpdate.*",
     "/Library/Google/Google Chrome Brand.plist",
     "/Library/Google/GoogleSoftwareUpdate",
@@ -37,10 +45,14 @@ cask "google-chrome-canary" do
     "~/Library/Saved Application State/com.google.Chrome.savedState",
     "~/Library/WebKit/com.google.Chrome",
   ],
-      rmdir: [
+      rmdir:     [
         "/Library/Google",
         "~/Library/Application Support/Google",
         "~/Library/Caches/Google",
         "~/Library/Google",
+      ],
+      launchctl: [
+        "com.google.keystone.agent",
+        "com.google.keystone.daemon",
       ]
 end

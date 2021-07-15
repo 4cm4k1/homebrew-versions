@@ -14,8 +14,12 @@ $ brew tap homebrew/cask-versions
 You can now install alternate versions of Casks.
 
 ```sh
-$ brew cask install iterm2-beta
+$ brew install iterm2-beta
 ```
+
+## Submitting a Cask to this repository
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Acceptable Casks
 

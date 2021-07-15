@@ -1,13 +1,17 @@
 cask "slack-beta" do
-  version "4.9.0"
-  sha256 "ace49589de02d1b3f8d146fc4f270db55d78301d3536805858e747417dfdc4f6"
+  version "4.18.0"
+  sha256 "6f200fa9115381a136d896a0ae1016e27fd47ffa88195eedbfd7a59716eea3e7"
 
-  # downloads.slack-edge.com/ was verified as official when first introduced to the cask
-  url "https://downloads.slack-edge.com/releases/macos/#{version}/beta/x64/Slack-#{version}-macOS.zip"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://slack.com/ssb/download-osx-beta"
+  url "https://downloads.slack-edge.com/releases/macos/#{version}/beta/x64/Slack-#{version}-macOS.zip",
+      verified: "downloads.slack-edge.com/"
   name "Slack"
   desc "Team communication and collaboration software"
   homepage "https://slack.com/beta/osx"
+
+  livecheck do
+    url "https://slack.com/ssb/download-osx-beta"
+    strategy :header_match
+  end
 
   auto_updates true
   conflicts_with cask: "slack"

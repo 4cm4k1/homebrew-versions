@@ -1,13 +1,31 @@
 cask "visual-studio-code-insiders" do
-  version "1.50.0,cca20eba8974b1d6b6a9b71bf4e60a29c8f26648"
-  sha256 "9a4c00ea45f69976c1f6de9ced9bf9370fef924ef1db4588c1d5db2481e0c4f9"
+  version "1.59.0,9520f0a515e7e24802c92f885a0efb242fca3831"
 
-  # az764295.vo.msecnd.net/insider/ was verified as official when first introduced to the cask
-  url "https://az764295.vo.msecnd.net/insider/#{version.after_comma}/VSCode-darwin-insider.zip"
-  appcast "https://vscode-update.azurewebsites.net/api/update/darwin/insider/VERSION"
+  if Hardware::CPU.intel?
+    sha256 "88fca7d376d544193e581de07c1ab3bd4a64c2d59145aab5d0ec5b29752bed30"
+
+    url "https://az764295.vo.msecnd.net/insider/#{version.after_comma}/VSCode-darwin.zip",
+        verified: "az764295.vo.msecnd.net/insider/"
+  else
+    sha256 "8331eb40379fc6c80deaf5303f84d7591b287ee0ed928bc04eb566e083e3afda"
+
+    url "https://az764295.vo.msecnd.net/insider/#{version.after_comma}/VSCode-darwin-arm64.zip",
+        verified: "az764295.vo.msecnd.net/insider/"
+  end
+
   name "Microsoft Visual Studio Code"
-  name "VS Code - Insiders"
+  name "Visual Studio Code Insiders"
+  desc "Code editor"
   homepage "https://code.visualstudio.com/insiders"
+
+  livecheck do
+    url "https://update.code.visualstudio.com/api/update/darwin-universal/insider/VERSION"
+    strategy :page_match do |page|
+      name = page[/"name":"(\d+(?:\.\d+)*)/i, 1]
+      version = page[/"version":"(\w+)/i, 1]
+      "#{name},#{version}"
+    end
+  end
 
   auto_updates true
 

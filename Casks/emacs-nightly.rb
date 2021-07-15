@@ -2,12 +2,11 @@ cask "emacs-nightly" do
   version :latest
   sha256 :no_check
 
-  url do
-    require "open-uri"
-    file = URI("https://emacsformacosx.com/atom/daily").open.read.scan(/href="([^"]+.dmg)"/).flatten.first
-    file.to_s
+  url "https://emacsformacosx.com/atom/daily" do |page|
+    page[/href="([^"]+.dmg)"/, 1]
   end
   name "Emacs"
+  desc "GNU Emacs text editor"
   homepage "https://emacsformacosx.com/"
 
   conflicts_with cask:    [

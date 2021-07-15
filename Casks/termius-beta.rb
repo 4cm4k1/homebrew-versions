@@ -1,10 +1,21 @@
 cask "termius-beta" do
-  version "6.5.0"
-  sha256 "3d8f516b5f5ed2b339e9aeb797e965460c35254eda0b579c34402681cdc81b85"
+  version "7.15.1"
+  sha256 :no_check
 
-  url "https://www.termius.com/beta/download/mac/Termius+Beta.dmg"
+  if Hardware::CPU.intel?
+    url "https://www.termius.com/beta/download/mac/Termius+Beta.dmg"
+  else
+    url "https://www.termius.com/beta/download/mac-arm64/Termius+Beta.dmg"
+  end
+
   name "Termius Beta"
+  desc "SSH client"
   homepage "https://www.termius.com/beta-program"
+
+  livecheck do
+    url "https://autoupdate.termius.com/mac-beta/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   app "Termius Beta.app"
 

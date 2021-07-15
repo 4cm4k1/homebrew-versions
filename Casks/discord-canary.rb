@@ -1,12 +1,17 @@
 cask "discord-canary" do
-  version "0.0.259"
-  sha256 "c516297f199078a63e718684a6a54e5ae4d6b9feb69bac55b6abedb3dce586aa"
+  version "0.0.273"
+  sha256 "cc484626356ed0b6cf79be44f6aae94be5c10d034be4860799640e8a90e2a5ed"
 
-  # discordapp.com was verified as official when first introduced to the cask
-  url "https://cdn-canary.discordapp.com/apps/osx/#{version}/DiscordCanary.dmg"
-  appcast "https://canary.discord.com/api/canary/updates?platform=osx"
+  url "https://dl-canary.discordapp.net/apps/osx/#{version}/DiscordCanary.dmg",
+      verified: "dl-canary.discordapp.net/"
   name "Discord Canary"
+  desc "Voice and text chat software"
   homepage "https://canary.discord.com/"
+
+  livecheck do
+    url "https://discord.com/api/download/canary?platform=osx"
+    strategy :header_match
+  end
 
   auto_updates true
 

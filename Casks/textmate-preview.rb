@@ -1,11 +1,11 @@
 cask "textmate-preview" do
-  version "2.0.12"
-  sha256 "99b353d8f56442cd600a1d8dcef7ab7534683c7b3cd1555c9d9e6013652f0e5e"
+  version "2.0.22"
+  sha256 "9c4da1730597e61682368593cb66530e3a9eae5c6dca5786a96f8be104bb7657"
 
-  # github.com/textmate/textmate/ was verified as official when first introduced to the cask
-  url "https://github.com/textmate/textmate/releases/download/v#{version}/TextMate_#{version}.tbz"
-  appcast "https://github.com/textmate/textmate/releases.atom"
+  url "https://github.com/textmate/textmate/releases/download/v#{version}/TextMate_#{version}.tbz",
+      verified: "github.com/textmate/textmate/"
   name "TextMate"
+  desc "General-purpose text editor"
   homepage "https://macromates.com/"
 
   auto_updates true

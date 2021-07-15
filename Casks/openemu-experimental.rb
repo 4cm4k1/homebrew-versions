@@ -3,14 +3,14 @@ cask "openemu-experimental" do
     version "2.0.9.1"
     sha256 "62c44e823fef65c583cbf5e6f84faa03618d713f45610f73bc23fb34cbf64762"
   else
-    version "2.2.1"
-    sha256 "8977f563868a312b72298dc7cd2b8767c21b440bae598d16a7d3916a98d870e8"
+    version "2.3.3"
+    sha256 "8b91fecfb0fd58ffc03abca00d6df2c519c396b955072c6c209d53018f921cf7"
   end
 
-  # github.com/OpenEmu/OpenEmu/ was verified as official when first introduced to the cask
-  url "https://github.com/OpenEmu/OpenEmu/releases/download/v#{version}/OpenEmu_#{version}-experimental.zip"
-  appcast "https://github.com/OpenEmu/OpenEmu/releases.atom"
+  url "https://github.com/OpenEmu/OpenEmu/releases/download/v#{version}/OpenEmu_#{version}-experimental.zip",
+      verified: "github.com/OpenEmu/OpenEmu/"
   name "OpenEmu"
+  desc "Retro video game emulation"
   homepage "https://openemu.org/"
 
   auto_updates true
@@ -25,6 +25,7 @@ cask "openemu-experimental" do
     "~/Library/Caches/OpenEmu",
     "~/Library/Caches/org.openemu.OpenEmu",
     "~/Library/Cookies/org.openemu.OpenEmu.binarycookies",
+    "~/Library/HTTPStorages/org.openemu.OpenEmu.binarycookies",
     "~/Library/Preferences/org.openemu.Atari800.plist",
     "~/Library/Preferences/org.openemu.Bliss.plist",
     "~/Library/Preferences/org.openemu.CrabEmu.plist",

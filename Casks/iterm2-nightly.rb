@@ -1,5 +1,5 @@
 cask "iterm2-nightly" do
-  # note: "2" is not a version number, but an intrinsic part of the product name
+  # NOTE: "2" is not a version number, but an intrinsic part of the product name
   version :latest
   sha256 :no_check
 
@@ -7,6 +7,11 @@ cask "iterm2-nightly" do
   name "iTerm2"
   homepage "https://www.iterm2.com/"
 
+  conflicts_with cask: [
+    "iterm2",
+    "iterm2-beta",
+    "iterm2-legacy",
+  ]
   depends_on macos: ">= :yosemite"
 
   app "iTerm.app"

@@ -1,11 +1,11 @@
 cask "keka-beta" do
-  version "1.2.0-beta.3"
-  sha256 "65fcd1640a879666d1332e282af28f9c6bee375ac40422bc80bb8f6ee33e70ad"
+  version "1.2.15"
+  sha256 "dfd1eef2c7a82307f57742a427613713af041b81dd2f693011d7bc84444615f0"
 
-  # github.com/aonez/Keka/ was verified as official when first introduced to the cask
-  url "https://github.com/aonez/Keka/releases/download/v#{version}/Keka-#{version}.dmg"
-  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://beta.keka.io"
+  url "https://github.com/aonez/Keka/releases/download/v#{version}/Keka-#{version}.dmg",
+      verified: "github.com/aonez/Keka/"
   name "Keka"
+  desc "File archiver"
   homepage "https://www.keka.io/#beta"
 
   auto_updates true

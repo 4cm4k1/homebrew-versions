@@ -1,11 +1,20 @@
 cask "rstudio-preview" do
-  version "1.3.1091"
-  sha256 "934b67230a69d5c8e5c0012c5bcafe907ba1867d682040408be1b03be4f39a08"
+  version "1.4.1725"
+  sha256 "29487960948bae1a7668316db6d5cf0efd98cd6fccb1467655ccbb8e45b34b44"
 
-  # s3.amazonaws.com/rstudio-ide-build/ was verified as official when first introduced to the cask
-  url "https://s3.amazonaws.com/rstudio-ide-build/desktop/macos/RStudio-#{version}.dmg"
+  url "https://s3.amazonaws.com/rstudio-ide-build/desktop/macos/RStudio-#{version}.dmg",
+      verified: "s3.amazonaws.com/rstudio-ide-build/"
   name "RStudio"
+  desc "Data science software focusing on R and Python"
   homepage "https://www.rstudio.com/products/rstudio/download/preview/"
+
+  livecheck do
+    url :homepage
+    regex(/RStudio[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+  end
+
+  conflicts_with cask: "rstudio"
+  depends_on macos: ">= :high_sierra"
 
   app "RStudio.app"
 

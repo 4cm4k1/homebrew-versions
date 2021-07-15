@@ -1,12 +1,20 @@
 cask "tunnelblick-beta" do
-  version "3.8.4beta04,5560"
-  sha256 "cdda787200e309e219e2c331d22f61482f23e4df7f6e28d3c52bf28b21380bdc"
+  version "3.8.6beta05,5706"
+  sha256 "dcd8b47cbee91846f09c02842cd85c52c12a556722be090bdc67c13cd5accde1"
 
-  # github.com/Tunnelblick/Tunnelblick/ was verified as official when first introduced to the cask
-  url "https://github.com/Tunnelblick/Tunnelblick/releases/download/v#{version.before_comma}/Tunnelblick_#{version.before_comma}_build_#{version.after_comma}.dmg"
-  appcast "https://github.com/Tunnelblick/Tunnelblick/releases.atom"
+  url "https://github.com/Tunnelblick/Tunnelblick/releases/download/v#{version.before_comma}/Tunnelblick_#{version.before_comma}_build_#{version.after_comma}.dmg",
+      verified: "github.com/Tunnelblick/Tunnelblick/"
   name "Tunnelblick"
+  desc "Free and open source graphic user interface for OpenVPN"
   homepage "https://www.tunnelblick.net/"
+
+  livecheck do
+    url "https://github.com/Tunnelblick/Tunnelblick/releases"
+    strategy :page_match do |page|
+      match = page.match(%r{href=.*?/Tunnelblick_(\d+(?:\.\d+)*beta(?:\d+))_build_(\d+)\.dmg}i)
+      "#{match[1]},#{match[2]}"
+    end
+  end
 
   auto_updates true
 

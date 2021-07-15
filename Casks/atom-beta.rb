@@ -1,12 +1,18 @@
 cask "atom-beta" do
-  version "1.52.0-beta0"
-  sha256 "71df9dc793a146dec45b62b76247eb16a9bf5892a3815ac250eba47352fd200f"
+  version "1.58.0-beta0"
+  sha256 "a9589c4718fb4d2d3da40eee327d51e75b008c04019ac5dafe59268e0ac41fd7"
 
-  # github.com/atom/atom/ was verified as official when first introduced to the cask
-  url "https://github.com/atom/atom/releases/download/v#{version}/atom-mac.zip"
-  appcast "https://github.com/atom/atom/releases.atom"
+  url "https://github.com/atom/atom/releases/download/v#{version}/atom-mac.zip",
+      verified: "github.com/atom/atom/"
   name "Github Atom Beta"
+  desc "Cross-platform text editor"
   homepage "https://atom.io/beta"
+
+  livecheck do
+    url :url
+    strategy :git
+    regex(/^v?(\d+(?:\.\d+)*-beta\d*)$/i)
+  end
 
   auto_updates true
 

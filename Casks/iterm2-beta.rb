@@ -1,15 +1,24 @@
 cask "iterm2-beta" do
-  # note: "2" is not a version number, but an intrinsic part of the product name
-  version "3.4.0beta7"
-  sha256 "f7d8293ec6dbdf8c527274b66c8154d5f4a86ab68d24843fdb5268c727a6bace"
+  # NOTE: "2" is not a version number, but an intrinsic part of the product name
+  version "3.4.9beta1"
+  sha256 "b80bab5a93448a170f72ccb00177809ffc89a73bc76286fdd4c5de15cd272ae6"
 
   url "https://iterm2.com/downloads/beta/iTerm2-#{version.dots_to_underscores}.zip"
-  appcast "https://iterm2.com/appcasts/testing_modern.xml"
   name "iTerm2"
+  desc "Terminal emulator as alternative to Apple's Terminal app"
   homepage "https://www.iterm2.com/"
 
+  livecheck do
+    url "https://iterm2.com/appcasts/testing_modern.xml"
+    strategy :sparkle, &:version
+  end
+
   auto_updates true
-  conflicts_with cask: "iterm2"
+  conflicts_with cask: [
+    "iterm2",
+    "iterm2-legacy",
+    "iterm2-nightly",
+  ]
   depends_on macos: ">= :mojave"
 
   app "iTerm.app"

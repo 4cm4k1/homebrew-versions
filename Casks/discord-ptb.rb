@@ -1,11 +1,19 @@
 cask "discord-ptb" do
-  version "0.0.51"
-  sha256 "71d987661b1303f48b6cccf6f6aad601c014a917e173936c6f9ccf91aa164091"
+  version "0.0.56"
+  sha256 "1d71fab93e5d476b559367851ef80d8f12fa7b87cea737585cc2965cad0d27e6"
 
-  url "https://cdn-ptb.discordapp.com/apps/osx/#{version}/DiscordPTB.dmg"
-  appcast "https://discordapp.com/api/ptb/updates?platform=osx"
+  url "https://dl-ptb.discordapp.net/apps/osx/#{version}/DiscordPTB.dmg",
+      verified: "dl-ptb.discordapp.net/"
   name "Discord PTB"
-  homepage "https://discordapp.com/"
+  desc "Voice and text chat software"
+  homepage "https://discord.com/"
+
+  livecheck do
+    url "https://discord.com/api/download/ptb?platform=osx"
+    strategy :header_match
+  end
+
+  auto_updates true
 
   app "Discord PTB.app"
 
